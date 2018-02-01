@@ -22,7 +22,7 @@ import java.awt.geom.Ellipse2D;
 public class PosiBasEuDi {
 
 	private JFrame frmPositionsBasierteEulerdiagramme;
-	private JTextField textField;
+	private JTextField textField_0;
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
@@ -32,10 +32,10 @@ public class PosiBasEuDi {
 	private JTextField textField_7;
 	private JTextField textField_8;
 	private JTextField textField_9;
-	private JCheckBox chckbxKreisAJn;
-	private JCheckBox chckbxKreisBJn;
-	private JCheckBox chckbxKreisCJn;
-	private JCheckBox chckbxJn;
+	private JCheckBox chckbxKreisAJN;
+	private JCheckBox chckbxKreisBJN;
+	private JCheckBox chckbxKreisCJN;
+	private JCheckBox chckbxSternJN;
 
 	/**
 	 * Launch the application.
@@ -65,7 +65,7 @@ public class PosiBasEuDi {
 	 */
 	private void initialize() {
 		frmPositionsBasierteEulerdiagramme = new JFrame();
-		frmPositionsBasierteEulerdiagramme.setTitle("Positions basierte Euler-Diagramme");
+		frmPositionsBasierteEulerdiagramme.setTitle("Positionsbasierte Euler-Diagramme");
 		frmPositionsBasierteEulerdiagramme.setBounds(100, 100, 566, 722);
 		frmPositionsBasierteEulerdiagramme.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmPositionsBasierteEulerdiagramme.getContentPane().setLayout(null);
@@ -79,20 +79,20 @@ public class PosiBasEuDi {
 		        g2d.setColor(Color.BLACK); 
 		        BasicStroke stroke1= new BasicStroke(6.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND);
 		        Font font1 = new Font("Arial", 50, 50);
-		        int a1 = Integer.valueOf(textField.getText());
+		        int a1 = Integer.valueOf(textField_0.getText());
 		        int ax = Integer.valueOf(textField_1.getText());
 		        int a2 = Integer.valueOf(textField_2.getText());
-		        boolean az = chckbxKreisAJn.isSelected();
+		        boolean az = chckbxKreisAJN.isSelected();
 		        int b1 = Integer.valueOf(textField_3.getText());
 		        int bx = Integer.valueOf(textField_4.getText());
 		        int b2 = Integer.valueOf(textField_5.getText());
-		        boolean bz = chckbxKreisBJn.isSelected();
+		        boolean bz = chckbxKreisBJN.isSelected();
 		        int c1 = Integer.valueOf(textField_6.getText());
 		        int cx = Integer.valueOf(textField_7.getText());
 		        int c2 = Integer.valueOf(textField_8.getText());
-		        boolean cz = chckbxKreisCJn.isSelected();
+		        boolean cz = chckbxKreisCJN.isSelected();
 		        int ex = Integer.valueOf(textField_9.getText());
-		        boolean ez = chckbxJn.isSelected();
+		        boolean ez = chckbxSternJN.isSelected();
 		        Ellipse2D.Double kreis1 = new Ellipse2D.Double(42+a1*50, 255-(a2-a1)*25, (a2-a1)*50, (a2-a1)*50);
 		        Ellipse2D.Double kreis2 = new Ellipse2D.Double(42+b1*50, 255-(b2-b1)*25, (b2-b1)*50, (b2-b1)*50);
 		        Ellipse2D.Double kreis3 = new Ellipse2D.Double(42+c1*50, 255-(c2-c1)*25, (c2-c1)*50, (c2-c1)*50);
@@ -116,11 +116,11 @@ public class PosiBasEuDi {
 		panel.setBounds(0, 133, 550, 550);
 		frmPositionsBasierteEulerdiagramme.getContentPane().add(panel);
 		
-		textField = new JTextField();
-		textField.setBounds(20, 30, 33, 20);
-		textField.setText("1");
-		frmPositionsBasierteEulerdiagramme.getContentPane().add(textField);
-		textField.setColumns(10);
+		textField_0 = new JTextField();
+		textField_0.setBounds(20, 30, 33, 20);
+		textField_0.setText("1");
+		frmPositionsBasierteEulerdiagramme.getContentPane().add(textField_0);
+		textField_0.setColumns(10);
 		
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
@@ -181,31 +181,37 @@ public class PosiBasEuDi {
 		lblNewLabel.setBounds(10, 8, 507, 14);
 		frmPositionsBasierteEulerdiagramme.getContentPane().add(lblNewLabel);
 		
-		JLabel lblNewLabelC = new JLabel("PosiBasEuDi Version 0.9     31.01.2018    Dr.-Ing. Joachim Schwarte");
+		JLabel lblNewLabelC = new JLabel("PosiBasEuDi Version 0.901");
 		lblNewLabelC.setFont(new Font("Arial", Font.PLAIN, 10));
-		lblNewLabelC.setBounds(10, 110, 516, 14);
-		lblNewLabelC.setHorizontalAlignment(4);
+		lblNewLabelC.setBounds(20, 110, 516, 14);
+		lblNewLabelC.setHorizontalAlignment(2);
 		frmPositionsBasierteEulerdiagramme.getContentPane().add(lblNewLabelC);
+
+		JLabel lblNewLabelD = new JLabel("01.02.2018    Dr.-Ing. Joachim Schwarte");
+		lblNewLabelD.setFont(new Font("Arial", Font.PLAIN, 10));
+		lblNewLabelD.setBounds(10, 110, 516, 14);
+		lblNewLabelD.setHorizontalAlignment(4);
+		frmPositionsBasierteEulerdiagramme.getContentPane().add(lblNewLabelD);
 		
-		chckbxKreisAJn = new JCheckBox("Kreis A J/N");
-		chckbxKreisAJn.setBounds(16, 52, 97, 23);
-		chckbxKreisAJn.setSelected(true);
-		frmPositionsBasierteEulerdiagramme.getContentPane().add(chckbxKreisAJn);
+		chckbxKreisAJN = new JCheckBox("Kreis A J/N");
+		chckbxKreisAJN.setBounds(16, 52, 97, 23);
+		chckbxKreisAJN.setSelected(true);
+		frmPositionsBasierteEulerdiagramme.getContentPane().add(chckbxKreisAJN);
 		
-		chckbxKreisBJn = new JCheckBox("Kreis B J/N");
-		chckbxKreisBJn.setBounds(168, 52, 97, 23);
-		chckbxKreisBJn.setSelected(true);
-		frmPositionsBasierteEulerdiagramme.getContentPane().add(chckbxKreisBJn);
+		chckbxKreisBJN = new JCheckBox("Kreis B J/N");
+		chckbxKreisBJN.setBounds(168, 52, 97, 23);
+		chckbxKreisBJN.setSelected(true);
+		frmPositionsBasierteEulerdiagramme.getContentPane().add(chckbxKreisBJN);
 		
-		chckbxKreisCJn = new JCheckBox("Kreis C J/N");
-		chckbxKreisCJn.setBounds(320, 52, 97, 23);
-		chckbxKreisCJn.setSelected(true);
-		frmPositionsBasierteEulerdiagramme.getContentPane().add(chckbxKreisCJn);
+		chckbxKreisCJN = new JCheckBox("Kreis C J/N");
+		chckbxKreisCJN.setBounds(320, 52, 97, 23);
+		chckbxKreisCJN.setSelected(true);
+		frmPositionsBasierteEulerdiagramme.getContentPane().add(chckbxKreisCJN);
 		
-		chckbxJn = new JCheckBox("* J/N");
-		chckbxJn.setBounds(471, 52, 97, 23);
-		chckbxJn.setSelected(false);
-		frmPositionsBasierteEulerdiagramme.getContentPane().add(chckbxJn);
+		chckbxSternJN = new JCheckBox("* J/N");
+		chckbxSternJN.setBounds(471, 52, 97, 23);
+		chckbxSternJN.setSelected(false);
+		frmPositionsBasierteEulerdiagramme.getContentPane().add(chckbxSternJN);
 		
 		JButton btnNewButton = new JButton("Diagramm neu zeichnen");
 		btnNewButton.addMouseListener(new MouseAdapter() {
