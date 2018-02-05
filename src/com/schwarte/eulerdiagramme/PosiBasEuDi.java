@@ -105,38 +105,45 @@ public class PosiBasEuDi {
 		        Font font1 = new Font("Arial", 50, 50);
 		        boolean rangeOK = true;
 		        boolean circleOK = true;
+		        boolean nomaskOK = true;
+		        boolean insideOK = true;
 		        try {
 			        a1 = Integer.valueOf(textField_0.getText());
 			        ax = Integer.valueOf(textField_1.getText());
 			        a2 = Integer.valueOf(textField_2.getText());
 			        az = chckbxKreisAJN.isSelected();
-			        if (az == true && (a1<0 || a1>9)) {rangeOK = false;}
-			        if (az == true && (ax<0 || ax>9)) {rangeOK = false;}
-			        if (az == true && (a2<0 || a2>9)) {rangeOK = false;}
-			        if (a1>=ax || ax>=a2) {circleOK=false;}
+			        if (az == true && (a1>=ax || ax>=a2)) {circleOK=false;}
 			        b1 = Integer.valueOf(textField_3.getText());
 			        bx = Integer.valueOf(textField_4.getText());
 			        b2 = Integer.valueOf(textField_5.getText());
 			        bz = chckbxKreisBJN.isSelected();
-			        if (bz == true && (b1<0 || b1>9)) {rangeOK = false;}
-			        if (bz == true && (bx<0 || bx>9)) {rangeOK = false;}
-			        if (bz == true && (b2<0 || b2>9)) {rangeOK = false;}
-			        if (b1>=bx || bx>=b2) {circleOK=false;}
+			        if (bz == true && (b1>=bx || bx>=b2)) {circleOK=false;}
 			        c1 = Integer.valueOf(textField_6.getText());
 			        cx = Integer.valueOf(textField_7.getText());
 			        c2 = Integer.valueOf(textField_8.getText());
 			        cz = chckbxKreisCJN.isSelected();
-			        if (cz == true && (c1<0 || c1>9)) {rangeOK = false;}
-			        if (cz == true && (cx<0 || cx>9)) {rangeOK = false;}
-			        if (cz == true && (c2<0 || c2>9)) {rangeOK = false;}
-			        if (c1>=cx || cx>=c2) {circleOK=false;}
+			        if (cz == true && (c1>=cx || cx>=c2)) {circleOK=false;}
 			        ex = Integer.valueOf(textField_9.getText());
 			        ez = chckbxSternJN.isSelected();
-			        if (ez == true && (ex<0 || ex>9)) {rangeOK = false;}	        	
+			        if (az == true && bz == true && (ax == b1 || ax == bx || ax == b2)) {nomaskOK = false;}
+			        if (az == true && cz == true && (ax == c1 || ax == cx || ax == c2)) {nomaskOK = false;}
+			        if (bz == true && az == true && (bx == a1 || bx == ax || bx == a2)) {nomaskOK = false;}
+			        if (bz == true && cz == true && (bx == c1 || bx == cx || bx == c2)) {nomaskOK = false;}
+			        if (cz == true && az == true && (cx == a1 || cx == ax || cx == a2)) {nomaskOK = false;}
+			        if (cz == true && bz == true && (cx == b1 || cx == bx || cx == b2)) {nomaskOK = false;}
+			        if (ez == true && az == true && (ex == a1 || ex == ax || ex == a2)) {nomaskOK = false;}
+			        if (ez == true && bz == true && (ex == b1 || ex == bx || ex == b2)) {nomaskOK = false;}
+			        if (ez == true && cz == true && (ex == c1 || ex == cx || ex == c2)) {nomaskOK = false;}		
+			        if (ez == true) {
+			        	insideOK = false;
+			        	if (az == true && a1 < ex && a2 > ex) {insideOK = true;}
+			        	if (bz == true && b1 < ex && b2 > ex) {insideOK = true;}
+			        	if (cz == true && c1 < ex && c2 > ex) {insideOK = true;}
+			        }
 		        } catch (NumberFormatException e) {
 		        	rangeOK = false;
 		        } 
-		        if (rangeOK == true && circleOK == true) {
+		        if (rangeOK == true && circleOK == true && nomaskOK == true && insideOK == true) {
 			        Ellipse2D.Double kreis1 = new Ellipse2D.Double(42+a1*50, 255-(a2-a1)*25, (a2-a1)*50, (a2-a1)*50);
 			        Ellipse2D.Double kreis2 = new Ellipse2D.Double(42+b1*50, 255-(b2-b1)*25, (b2-b1)*50, (b2-b1)*50);
 			        Ellipse2D.Double kreis3 = new Ellipse2D.Double(42+c1*50, 255-(c2-c1)*25, (c2-c1)*50, (c2-c1)*50);
@@ -164,74 +171,112 @@ public class PosiBasEuDi {
 		        	}
 		        	if (circleOK == false) {
 		        		g2d.drawString(GuiStrings.getGuiString("e2",comboBox_1.
-			        			getItemAt(comboBox_1.getSelectedIndex())),30,130+20*zeilen);		        		
+			        			getItemAt(comboBox_1.getSelectedIndex())),30,130+20*zeilen);
+		        		zeilen++;
 		        	}
-
-
+		        	if (nomaskOK == false) {
+		        		g2d.drawString(GuiStrings.getGuiString("e3",comboBox_1.
+			        			getItemAt(comboBox_1.getSelectedIndex())),30,130+20*zeilen);	
+		        		zeilen++;
+		        	}
+		        	if (insideOK == false) {
+		        		g2d.drawString(GuiStrings.getGuiString("e4",comboBox_1.
+			        			getItemAt(comboBox_1.getSelectedIndex())),30,130+20*zeilen);
+		        		zeilen++;
+		        	}
+		        	if (rangeOK == false || nomaskOK == false || circleOK == false) {
+		        		g2d.drawString(GuiStrings.getGuiString("e5",comboBox_1.
+			        			getItemAt(comboBox_1.getSelectedIndex())),30,150+20*zeilen);
+		        	}
+	        		if (rangeOK == false) {
+	        			g2d.drawString(GuiStrings.getGuiString("e6",comboBox_1.
+			        			getItemAt(comboBox_1.getSelectedIndex())),30,180+20*zeilen);
+	        			zeilen++;
+	        		}
+	        		if (nomaskOK == false) {
+	        			g2d.drawString(GuiStrings.getGuiString("e7",comboBox_1.
+			        			getItemAt(comboBox_1.getSelectedIndex())),30,180+20*zeilen); 
+	        			zeilen++;
+	        		}
+	        		if (circleOK == false) {
+	        			g2d.drawString(GuiStrings.getGuiString("e8",comboBox_1.
+			        			getItemAt(comboBox_1.getSelectedIndex())),30,180+20*zeilen);
+	        			g2d.drawString(GuiStrings.getGuiString("e9",comboBox_1.
+			        			getItemAt(comboBox_1.getSelectedIndex())),30,200+20*zeilen);
+	        			
+	        		}
 		        }
-
-		    } 
-			
+		    } 			
 		};
 		panel.setBackground(Color.WHITE);
 		panel.setBounds(0, 160, 550, 500);
 		frmPositionsBasierteEulerdiagramme.getContentPane().add(panel);
 		
 		textField_0 = new JTextField();
+		textField_0.setDocument(new SetMaxText(1)); 
 		textField_0.setBounds(20, 30, 33, 20);
 		textField_0.setText("1");
 		frmPositionsBasierteEulerdiagramme.getContentPane().add(textField_0);
 		textField_0.setColumns(10);
 		
 		textField_1 = new JTextField();
+		textField_1.setDocument(new SetMaxText(1)); 
 		textField_1.setColumns(10);
 		textField_1.setBounds(65, 30, 33, 20);
 		textField_1.setText("2");
 		frmPositionsBasierteEulerdiagramme.getContentPane().add(textField_1);
 		
 		textField_2 = new JTextField();
+		textField_2.setDocument(new SetMaxText(1)); 
 		textField_2.setColumns(10);
 		textField_2.setBounds(110, 30, 33, 20);
 		textField_2.setText("3");
 		frmPositionsBasierteEulerdiagramme.getContentPane().add(textField_2);
 		
 		textField_3 = new JTextField();
+		textField_3.setDocument(new SetMaxText(1)); 
 		textField_3.setColumns(10);
 		textField_3.setBounds(172, 30, 33, 20);
 		textField_3.setText("0");
 		frmPositionsBasierteEulerdiagramme.getContentPane().add(textField_3);
 		
 		textField_4 = new JTextField();
+		textField_4.setDocument(new SetMaxText(1)); 
 		textField_4.setColumns(10);
 		textField_4.setBounds(217, 30, 33, 20);
 		textField_4.setText("5");
 		frmPositionsBasierteEulerdiagramme.getContentPane().add(textField_4);
 		
 		textField_5 = new JTextField();
+		textField_5.setDocument(new SetMaxText(1)); 
 		textField_5.setColumns(10);
 		textField_5.setBounds(262, 30, 33, 20);
 		textField_5.setText("6");
 		frmPositionsBasierteEulerdiagramme.getContentPane().add(textField_5);
 		
 		textField_6 = new JTextField();
+		textField_6.setDocument(new SetMaxText(1)); 
 		textField_6.setColumns(10);
 		textField_6.setBounds(324, 30, 33, 20);
 		textField_6.setText("4");
 		frmPositionsBasierteEulerdiagramme.getContentPane().add(textField_6);
 		
 		textField_7 = new JTextField();
+		textField_7.setDocument(new SetMaxText(1)); 
 		textField_7.setColumns(10);
 		textField_7.setBounds(369, 30, 33, 20);
 		textField_7.setText("7");
 		frmPositionsBasierteEulerdiagramme.getContentPane().add(textField_7);
 		
 		textField_8 = new JTextField();
+		textField_8.setDocument(new SetMaxText(1)); 
 		textField_8.setColumns(10);
 		textField_8.setBounds(416, 30, 33, 20);
 		textField_8.setText("8");
 		frmPositionsBasierteEulerdiagramme.getContentPane().add(textField_8);
 		
 		textField_9 = new JTextField();
+		textField_9.setDocument(new SetMaxText(1)); 
 		textField_9.setColumns(10);
 		textField_9.setBounds(476, 30, 33, 20);
 		textField_9.setText("9");
@@ -242,7 +287,7 @@ public class PosiBasEuDi {
 		lblNewLabel.setBounds(10, 8, 507, 14);
 		frmPositionsBasierteEulerdiagramme.getContentPane().add(lblNewLabel);
 		
-		JLabel lblNewLabelC = new JLabel("PosiBasEuDi Version 0.932");
+		JLabel lblNewLabelC = new JLabel("PosiBasEuDi Version 0.94");
 		lblNewLabelC.setFont(new Font("Arial", Font.PLAIN, 10));
 		lblNewLabelC.setBounds(20, 140, 516, 14);
 		lblNewLabelC.setHorizontalAlignment(2);
