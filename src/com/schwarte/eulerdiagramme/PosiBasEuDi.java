@@ -104,6 +104,7 @@ public class PosiBasEuDi {
 		        BasicStroke stroke1= new BasicStroke(6.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND);
 		        Font font1 = new Font("Arial", 50, 50);
 		        boolean rangeOK = true;
+		        boolean circleOK = true;
 		        try {
 			        a1 = Integer.valueOf(textField_0.getText());
 			        ax = Integer.valueOf(textField_1.getText());
@@ -112,6 +113,7 @@ public class PosiBasEuDi {
 			        if (az == true && (a1<0 || a1>9)) {rangeOK = false;}
 			        if (az == true && (ax<0 || ax>9)) {rangeOK = false;}
 			        if (az == true && (a2<0 || a2>9)) {rangeOK = false;}
+			        if (a1>=ax || ax>=a2) {circleOK=false;}
 			        b1 = Integer.valueOf(textField_3.getText());
 			        bx = Integer.valueOf(textField_4.getText());
 			        b2 = Integer.valueOf(textField_5.getText());
@@ -119,6 +121,7 @@ public class PosiBasEuDi {
 			        if (bz == true && (b1<0 || b1>9)) {rangeOK = false;}
 			        if (bz == true && (bx<0 || bx>9)) {rangeOK = false;}
 			        if (bz == true && (b2<0 || b2>9)) {rangeOK = false;}
+			        if (b1>=bx || bx>=b2) {circleOK=false;}
 			        c1 = Integer.valueOf(textField_6.getText());
 			        cx = Integer.valueOf(textField_7.getText());
 			        c2 = Integer.valueOf(textField_8.getText());
@@ -126,13 +129,14 @@ public class PosiBasEuDi {
 			        if (cz == true && (c1<0 || c1>9)) {rangeOK = false;}
 			        if (cz == true && (cx<0 || cx>9)) {rangeOK = false;}
 			        if (cz == true && (c2<0 || c2>9)) {rangeOK = false;}
+			        if (c1>=cx || cx>=c2) {circleOK=false;}
 			        ex = Integer.valueOf(textField_9.getText());
 			        ez = chckbxSternJN.isSelected();
 			        if (ez == true && (ex<0 || ex>9)) {rangeOK = false;}	        	
 		        } catch (NumberFormatException e) {
 		        	rangeOK = false;
-		        }
-		        if (rangeOK == true) {
+		        } 
+		        if (rangeOK == true && circleOK == true) {
 			        Ellipse2D.Double kreis1 = new Ellipse2D.Double(42+a1*50, 255-(a2-a1)*25, (a2-a1)*50, (a2-a1)*50);
 			        Ellipse2D.Double kreis2 = new Ellipse2D.Double(42+b1*50, 255-(b2-b1)*25, (b2-b1)*50, (b2-b1)*50);
 			        Ellipse2D.Double kreis3 = new Ellipse2D.Double(42+c1*50, 255-(c2-c1)*25, (c2-c1)*50, (c2-c1)*50);
@@ -150,8 +154,19 @@ public class PosiBasEuDi {
 			            g2d.drawString("|", 44+ex*50-8, 264);
 			        }
 		        } else {
-		        	g2d.drawString(GuiStrings.getGuiString("e1",comboBox_1.
-		        			getItemAt(comboBox_1.getSelectedIndex())),30,200);	
+		        	int zeilen = 0;
+	        		g2d.drawString(GuiStrings.getGuiString("e0",comboBox_1.
+		        			getItemAt(comboBox_1.getSelectedIndex())),30,100);	
+		        	if (rangeOK == false) {
+		        		g2d.drawString(GuiStrings.getGuiString("e1",comboBox_1.
+			        			getItemAt(comboBox_1.getSelectedIndex())),30,130);	
+		        		zeilen++;
+		        	}
+		        	if (circleOK == false) {
+		        		g2d.drawString(GuiStrings.getGuiString("e2",comboBox_1.
+			        			getItemAt(comboBox_1.getSelectedIndex())),30,130+20*zeilen);		        		
+		        	}
+
 
 		        }
 
@@ -227,7 +242,7 @@ public class PosiBasEuDi {
 		lblNewLabel.setBounds(10, 8, 507, 14);
 		frmPositionsBasierteEulerdiagramme.getContentPane().add(lblNewLabel);
 		
-		JLabel lblNewLabelC = new JLabel("PosiBasEuDi Version 0.931");
+		JLabel lblNewLabelC = new JLabel("PosiBasEuDi Version 0.932");
 		lblNewLabelC.setFont(new Font("Arial", Font.PLAIN, 10));
 		lblNewLabelC.setBounds(20, 140, 516, 14);
 		lblNewLabelC.setHorizontalAlignment(2);
