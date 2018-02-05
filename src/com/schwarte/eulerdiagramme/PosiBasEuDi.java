@@ -64,7 +64,7 @@ public class PosiBasEuDi {
 	 * Create the application.
 	 */
 	public PosiBasEuDi() {
-		Language l = Language.Deutsch;
+		Language l = Language.English;
 		initialize(l);
 	}
 
@@ -189,7 +189,7 @@ public class PosiBasEuDi {
 		lblNewLabel.setBounds(10, 8, 507, 14);
 		frmPositionsBasierteEulerdiagramme.getContentPane().add(lblNewLabel);
 		
-		JLabel lblNewLabelC = new JLabel("PosiBasEuDi Version 0.921");
+		JLabel lblNewLabelC = new JLabel("PosiBasEuDi Version 0.922");
 		lblNewLabelC.setFont(new Font("Arial", Font.PLAIN, 10));
 		lblNewLabelC.setBounds(20, 140, 516, 14);
 		lblNewLabelC.setHorizontalAlignment(2);
@@ -249,7 +249,7 @@ public class PosiBasEuDi {
 		});
 		comboBox_1.setModel(new DefaultComboBoxModel<Language>(Language.values()));
 		comboBox_1.setBounds(427, 105, 100, 20);
-		comboBox_1.setSelectedIndex(0);
+		comboBox_1.setSelectedIndex(1);
 		frmPositionsBasierteEulerdiagramme.getContentPane().add(comboBox_1);
 
 	}
