@@ -46,7 +46,21 @@ public class PosiBasEuDi {
 	private JButton btnNewButton;
 	private JLabel lblLang;
 	private JComboBox<Language> comboBox_1;
-
+	private int a1;
+	private int ax;
+	private int a2;
+	private int b1;
+	private int bx;
+	private int b2;
+	private int c1;
+	private int cx;
+	private int c2;
+	private int ex;
+	private boolean az;
+	private boolean bz;
+	private boolean cz;
+	private boolean ez;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -83,37 +97,41 @@ public class PosiBasEuDi {
 		JPanel panel = new JPanel() {
 			private static final long serialVersionUID = 1L;
 			public void paintComponent(Graphics g) { 
-		        Graphics2D g2d = (Graphics2D) g; 
+		        Graphics2D g2d = (Graphics2D) g; 	       
 		        g2d.setColor(Color.WHITE); 
 		        g2d.fillRect(0, 0, this.getWidth(), this.getHeight()); 
 		        g2d.setColor(Color.BLACK); 
 		        BasicStroke stroke1= new BasicStroke(6.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND);
 		        Font font1 = new Font("Arial", 50, 50);
 		        boolean rangeOK = true;
-		        int a1 = Integer.valueOf(textField_0.getText());
-		        int ax = Integer.valueOf(textField_1.getText());
-		        int a2 = Integer.valueOf(textField_2.getText());
-		        boolean az = chckbxKreisAJN.isSelected();
-		        if (az == true && (a1<0 || a1>9)) {rangeOK = false;}
-		        if (az == true && (ax<0 || ax>9)) {rangeOK = false;}
-		        if (az == true && (a2<0 || a2>9)) {rangeOK = false;}
-		        int b1 = Integer.valueOf(textField_3.getText());
-		        int bx = Integer.valueOf(textField_4.getText());
-		        int b2 = Integer.valueOf(textField_5.getText());
-		        boolean bz = chckbxKreisBJN.isSelected();
-		        if (bz == true && (b1<0 || b1>9)) {rangeOK = false;}
-		        if (bz == true && (bx<0 || bx>9)) {rangeOK = false;}
-		        if (bz == true && (b2<0 || b2>9)) {rangeOK = false;}
-		        int c1 = Integer.valueOf(textField_6.getText());
-		        int cx = Integer.valueOf(textField_7.getText());
-		        int c2 = Integer.valueOf(textField_8.getText());
-		        boolean cz = chckbxKreisCJN.isSelected();
-		        if (cz == true && (c1<0 || c1>9)) {rangeOK = false;}
-		        if (cz == true && (cx<0 || cx>9)) {rangeOK = false;}
-		        if (cz == true && (c2<0 || c2>9)) {rangeOK = false;}
-		        int ex = Integer.valueOf(textField_9.getText());
-		        boolean ez = chckbxSternJN.isSelected();
-		        if (ez == true && (ex<0 || ex>9)) {rangeOK = false;}
+		        try {
+			        a1 = Integer.valueOf(textField_0.getText());
+			        ax = Integer.valueOf(textField_1.getText());
+			        a2 = Integer.valueOf(textField_2.getText());
+			        az = chckbxKreisAJN.isSelected();
+			        if (az == true && (a1<0 || a1>9)) {rangeOK = false;}
+			        if (az == true && (ax<0 || ax>9)) {rangeOK = false;}
+			        if (az == true && (a2<0 || a2>9)) {rangeOK = false;}
+			        b1 = Integer.valueOf(textField_3.getText());
+			        bx = Integer.valueOf(textField_4.getText());
+			        b2 = Integer.valueOf(textField_5.getText());
+			        bz = chckbxKreisBJN.isSelected();
+			        if (bz == true && (b1<0 || b1>9)) {rangeOK = false;}
+			        if (bz == true && (bx<0 || bx>9)) {rangeOK = false;}
+			        if (bz == true && (b2<0 || b2>9)) {rangeOK = false;}
+			        c1 = Integer.valueOf(textField_6.getText());
+			        cx = Integer.valueOf(textField_7.getText());
+			        c2 = Integer.valueOf(textField_8.getText());
+			        cz = chckbxKreisCJN.isSelected();
+			        if (cz == true && (c1<0 || c1>9)) {rangeOK = false;}
+			        if (cz == true && (cx<0 || cx>9)) {rangeOK = false;}
+			        if (cz == true && (c2<0 || c2>9)) {rangeOK = false;}
+			        ex = Integer.valueOf(textField_9.getText());
+			        ez = chckbxSternJN.isSelected();
+			        if (ez == true && (ex<0 || ex>9)) {rangeOK = false;}	        	
+		        } catch (NumberFormatException e) {
+		        	rangeOK = false;
+		        }
 		        if (rangeOK == true) {
 			        Ellipse2D.Double kreis1 = new Ellipse2D.Double(42+a1*50, 255-(a2-a1)*25, (a2-a1)*50, (a2-a1)*50);
 			        Ellipse2D.Double kreis2 = new Ellipse2D.Double(42+b1*50, 255-(b2-b1)*25, (b2-b1)*50, (b2-b1)*50);
@@ -209,7 +227,7 @@ public class PosiBasEuDi {
 		lblNewLabel.setBounds(10, 8, 507, 14);
 		frmPositionsBasierteEulerdiagramme.getContentPane().add(lblNewLabel);
 		
-		JLabel lblNewLabelC = new JLabel("PosiBasEuDi Version 0.93");
+		JLabel lblNewLabelC = new JLabel("PosiBasEuDi Version 0.931");
 		lblNewLabelC.setFont(new Font("Arial", Font.PLAIN, 10));
 		lblNewLabelC.setBounds(20, 140, 516, 14);
 		lblNewLabelC.setHorizontalAlignment(2);
