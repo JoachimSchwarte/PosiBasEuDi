@@ -15,7 +15,7 @@ public class GuiStrings {
 			case "l1": r = "Sprache:"; break;
 			}
 		}
-		if (l == Language.Englisch) {
+		if (l == Language.English) {
 			switch (s) {
 			case "ti": r = "Position based Euler Diagrams"; break;
 			case "c1": r = "Circle A Y/N"; break;
