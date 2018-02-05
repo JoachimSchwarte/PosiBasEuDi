@@ -25,6 +25,8 @@ import java.awt.event.MouseEvent;
 import java.awt.geom.Ellipse2D;
 
 public class PosiBasEuDi {
+	
+	Language l = Language.English;
 
 	private JFrame frmPositionsBasierteEulerdiagramme;
 	private JTextField textField_0;
@@ -43,6 +45,7 @@ public class PosiBasEuDi {
 	private JCheckBox chckbxSternJN;
 	private JButton btnNewButton;
 	private JLabel lblLang;
+	private JComboBox<Language> comboBox_1;
 
 	/**
 	 * Launch the application.
@@ -64,7 +67,6 @@ public class PosiBasEuDi {
 	 * Create the application.
 	 */
 	public PosiBasEuDi() {
-		Language l = Language.English;
 		initialize(l);
 	}
 
@@ -87,36 +89,54 @@ public class PosiBasEuDi {
 		        g2d.setColor(Color.BLACK); 
 		        BasicStroke stroke1= new BasicStroke(6.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND);
 		        Font font1 = new Font("Arial", 50, 50);
+		        boolean rangeOK = true;
 		        int a1 = Integer.valueOf(textField_0.getText());
 		        int ax = Integer.valueOf(textField_1.getText());
 		        int a2 = Integer.valueOf(textField_2.getText());
 		        boolean az = chckbxKreisAJN.isSelected();
+		        if (az == true && (a1<0 || a1>9)) {rangeOK = false;}
+		        if (az == true && (ax<0 || ax>9)) {rangeOK = false;}
+		        if (az == true && (a2<0 || a2>9)) {rangeOK = false;}
 		        int b1 = Integer.valueOf(textField_3.getText());
 		        int bx = Integer.valueOf(textField_4.getText());
 		        int b2 = Integer.valueOf(textField_5.getText());
 		        boolean bz = chckbxKreisBJN.isSelected();
+		        if (bz == true && (b1<0 || b1>9)) {rangeOK = false;}
+		        if (bz == true && (bx<0 || bx>9)) {rangeOK = false;}
+		        if (bz == true && (b2<0 || b2>9)) {rangeOK = false;}
 		        int c1 = Integer.valueOf(textField_6.getText());
 		        int cx = Integer.valueOf(textField_7.getText());
 		        int c2 = Integer.valueOf(textField_8.getText());
 		        boolean cz = chckbxKreisCJN.isSelected();
+		        if (cz == true && (c1<0 || c1>9)) {rangeOK = false;}
+		        if (cz == true && (cx<0 || cx>9)) {rangeOK = false;}
+		        if (cz == true && (c2<0 || c2>9)) {rangeOK = false;}
 		        int ex = Integer.valueOf(textField_9.getText());
 		        boolean ez = chckbxSternJN.isSelected();
-		        Ellipse2D.Double kreis1 = new Ellipse2D.Double(42+a1*50, 255-(a2-a1)*25, (a2-a1)*50, (a2-a1)*50);
-		        Ellipse2D.Double kreis2 = new Ellipse2D.Double(42+b1*50, 255-(b2-b1)*25, (b2-b1)*50, (b2-b1)*50);
-		        Ellipse2D.Double kreis3 = new Ellipse2D.Double(42+c1*50, 255-(c2-c1)*25, (c2-c1)*50, (c2-c1)*50);
-		        g2d.setStroke(stroke1);
-		        g2d.setFont(font1);         
-		        if (az == true) {g2d.draw(kreis1);} 
-		        if (bz == true) {g2d.draw(kreis2);}
-		        if (cz == true) {g2d.draw(kreis3);}
-		        if (az == true) {g2d.drawString("A", 34+ax*50-8, 270);}
-		        if (bz == true) {g2d.drawString("B", 34+bx*50-8, 270);}
-		        if (cz == true) {g2d.drawString("C", 34+cx*50-8, 270);}
-		        if (ez == true) {
-		        	g2d.drawString("X", 34+ex*50-8, 270);
-		            g2d.drawString("_", 37+ex*50-8, 243);
-		            g2d.drawString("|", 44+ex*50-8, 264);
+		        if (ez == true && (ex<0 || ex>9)) {rangeOK = false;}
+		        if (rangeOK == true) {
+			        Ellipse2D.Double kreis1 = new Ellipse2D.Double(42+a1*50, 255-(a2-a1)*25, (a2-a1)*50, (a2-a1)*50);
+			        Ellipse2D.Double kreis2 = new Ellipse2D.Double(42+b1*50, 255-(b2-b1)*25, (b2-b1)*50, (b2-b1)*50);
+			        Ellipse2D.Double kreis3 = new Ellipse2D.Double(42+c1*50, 255-(c2-c1)*25, (c2-c1)*50, (c2-c1)*50);
+			        g2d.setStroke(stroke1);
+			        g2d.setFont(font1);         
+			        if (az == true) {g2d.draw(kreis1);} 
+			        if (bz == true) {g2d.draw(kreis2);}
+			        if (cz == true) {g2d.draw(kreis3);}
+			        if (az == true) {g2d.drawString("A", 34+ax*50-8, 270);}
+			        if (bz == true) {g2d.drawString("B", 34+bx*50-8, 270);}
+			        if (cz == true) {g2d.drawString("C", 34+cx*50-8, 270);}
+			        if (ez == true) {
+			        	g2d.drawString("X", 34+ex*50-8, 270);
+			            g2d.drawString("_", 37+ex*50-8, 243);
+			            g2d.drawString("|", 44+ex*50-8, 264);
+			        }
+		        } else {
+		        	g2d.drawString(GuiStrings.getGuiString("e1",comboBox_1.
+		        			getItemAt(comboBox_1.getSelectedIndex())),30,200);	
+
 		        }
+
 		    } 
 			
 		};
@@ -189,7 +209,7 @@ public class PosiBasEuDi {
 		lblNewLabel.setBounds(10, 8, 507, 14);
 		frmPositionsBasierteEulerdiagramme.getContentPane().add(lblNewLabel);
 		
-		JLabel lblNewLabelC = new JLabel("PosiBasEuDi Version 0.922");
+		JLabel lblNewLabelC = new JLabel("PosiBasEuDi Version 0.93");
 		lblNewLabelC.setFont(new Font("Arial", Font.PLAIN, 10));
 		lblNewLabelC.setBounds(20, 140, 516, 14);
 		lblNewLabelC.setHorizontalAlignment(2);
@@ -238,12 +258,13 @@ public class PosiBasEuDi {
 		lblLang.setHorizontalAlignment(2);
 		frmPositionsBasierteEulerdiagramme.getContentPane().add(lblLang);
 		
-		JComboBox<Language> comboBox_1 = new JComboBox<Language>();
+		comboBox_1 = new JComboBox<Language>();
 		comboBox_1.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				changeLanguage(comboBox_1.getItemAt(comboBox_1.getSelectedIndex()));
+				panel.repaint();
 				
 			}			
 		});
@@ -253,15 +274,15 @@ public class PosiBasEuDi {
 		frmPositionsBasierteEulerdiagramme.getContentPane().add(comboBox_1);
 
 	}
-	private void changeLanguage(Language l) {
-		frmPositionsBasierteEulerdiagramme.setTitle(GuiStrings.getGuiString("ti",l));
-		chckbxKreisAJN.setText(GuiStrings.getGuiString("c1",l));
-		chckbxKreisBJN.setText(GuiStrings.getGuiString("c2",l));
-		chckbxKreisCJN.setText(GuiStrings.getGuiString("c3",l));
-		chckbxSternJN.setText(GuiStrings.getGuiString("c4",l));
-		btnNewButton.setText(GuiStrings.getGuiString("b1",l));
-		lblLang.setText(GuiStrings.getGuiString("l1",l));
-		
+	private void changeLanguage(Language l1) {
+		frmPositionsBasierteEulerdiagramme.setTitle(GuiStrings.getGuiString("ti",l1));
+		chckbxKreisAJN.setText(GuiStrings.getGuiString("c1",l1));
+		chckbxKreisBJN.setText(GuiStrings.getGuiString("c2",l1));
+		chckbxKreisCJN.setText(GuiStrings.getGuiString("c3",l1));
+		chckbxSternJN.setText(GuiStrings.getGuiString("c4",l1));
+		btnNewButton.setText(GuiStrings.getGuiString("b1",l1));
+		lblLang.setText(GuiStrings.getGuiString("l1",l1));
+		l=l1;
 	}
 	
  

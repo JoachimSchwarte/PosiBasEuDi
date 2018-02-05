@@ -13,6 +13,8 @@ public class GuiStrings {
 			case "c4": r = "* J/N"; break;
 			case "b1": r = "Diagramm neu zeichnen"; break;
 			case "l1": r = "Sprache:"; break;
+			case "e1": r = "Eine der Postitionsnummern liegt ausserhalb "
+					+ "des zulässigen Bereichs (0 bis 9)."; break;
 			}
 		}
 		if (l == Language.English) {
@@ -24,6 +26,8 @@ public class GuiStrings {
 			case "c4": r = "* Y/N"; break;
 			case "b1": r = "redraw diagram"; break;
 			case "l1": r = "Language:"; break;
+			case "e1": r = "One of the position numbers is out of "
+					+ "range (0 to 9)."; break;
 			}		
 		}
 		return r;
