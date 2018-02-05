@@ -14,7 +14,12 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Ellipse2D;
@@ -36,6 +41,8 @@ public class PosiBasEuDi {
 	private JCheckBox chckbxKreisBJN;
 	private JCheckBox chckbxKreisCJN;
 	private JCheckBox chckbxSternJN;
+	private JButton btnNewButton;
+	private JLabel lblLang;
 
 	/**
 	 * Launch the application.
@@ -57,19 +64,20 @@ public class PosiBasEuDi {
 	 * Create the application.
 	 */
 	public PosiBasEuDi() {
-		initialize();
+		Language l = Language.Deutsch;
+		initialize(l);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize(Language l) {		
 		frmPositionsBasierteEulerdiagramme = new JFrame();
-		frmPositionsBasierteEulerdiagramme.setTitle("Positionsbasierte Euler-Diagramme");
-		frmPositionsBasierteEulerdiagramme.setBounds(100, 100, 566, 722);
+		frmPositionsBasierteEulerdiagramme.setTitle(GuiStrings.getGuiString("ti",l));
+		frmPositionsBasierteEulerdiagramme.setBounds(100, 15, 566, 700);
 		frmPositionsBasierteEulerdiagramme.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmPositionsBasierteEulerdiagramme.getContentPane().setLayout(null);
-		
+
 		JPanel panel = new JPanel() {
 			private static final long serialVersionUID = 1L;
 			public void paintComponent(Graphics g) { 
@@ -113,7 +121,7 @@ public class PosiBasEuDi {
 			
 		};
 		panel.setBackground(Color.WHITE);
-		panel.setBounds(0, 133, 550, 550);
+		panel.setBounds(0, 160, 550, 500);
 		frmPositionsBasierteEulerdiagramme.getContentPane().add(panel);
 		
 		textField_0 = new JTextField();
@@ -181,39 +189,39 @@ public class PosiBasEuDi {
 		lblNewLabel.setBounds(10, 8, 507, 14);
 		frmPositionsBasierteEulerdiagramme.getContentPane().add(lblNewLabel);
 		
-		JLabel lblNewLabelC = new JLabel("PosiBasEuDi Version 0.901");
+		JLabel lblNewLabelC = new JLabel("PosiBasEuDi Version 0.92");
 		lblNewLabelC.setFont(new Font("Arial", Font.PLAIN, 10));
-		lblNewLabelC.setBounds(20, 110, 516, 14);
+		lblNewLabelC.setBounds(20, 140, 516, 14);
 		lblNewLabelC.setHorizontalAlignment(2);
 		frmPositionsBasierteEulerdiagramme.getContentPane().add(lblNewLabelC);
 
-		JLabel lblNewLabelD = new JLabel("01.02.2018    Dr.-Ing. Joachim Schwarte");
+		JLabel lblNewLabelD = new JLabel("05.02.2018    Dr.-Ing. Joachim Schwarte");
 		lblNewLabelD.setFont(new Font("Arial", Font.PLAIN, 10));
-		lblNewLabelD.setBounds(10, 110, 516, 14);
+		lblNewLabelD.setBounds(10, 140, 516, 14);
 		lblNewLabelD.setHorizontalAlignment(4);
 		frmPositionsBasierteEulerdiagramme.getContentPane().add(lblNewLabelD);
 		
-		chckbxKreisAJN = new JCheckBox("Kreis A J/N");
+		chckbxKreisAJN = new JCheckBox(GuiStrings.getGuiString("c1",l));
 		chckbxKreisAJN.setBounds(16, 52, 97, 23);
 		chckbxKreisAJN.setSelected(true);
 		frmPositionsBasierteEulerdiagramme.getContentPane().add(chckbxKreisAJN);
 		
-		chckbxKreisBJN = new JCheckBox("Kreis B J/N");
+		chckbxKreisBJN = new JCheckBox(GuiStrings.getGuiString("c2",l));
 		chckbxKreisBJN.setBounds(168, 52, 97, 23);
 		chckbxKreisBJN.setSelected(true);
 		frmPositionsBasierteEulerdiagramme.getContentPane().add(chckbxKreisBJN);
 		
-		chckbxKreisCJN = new JCheckBox("Kreis C J/N");
+		chckbxKreisCJN = new JCheckBox(GuiStrings.getGuiString("c3",l));
 		chckbxKreisCJN.setBounds(320, 52, 97, 23);
 		chckbxKreisCJN.setSelected(true);
 		frmPositionsBasierteEulerdiagramme.getContentPane().add(chckbxKreisCJN);
 		
-		chckbxSternJN = new JCheckBox("* J/N");
+		chckbxSternJN = new JCheckBox(GuiStrings.getGuiString("c4",l));
 		chckbxSternJN.setBounds(471, 52, 97, 23);
 		chckbxSternJN.setSelected(false);
 		frmPositionsBasierteEulerdiagramme.getContentPane().add(chckbxSternJN);
 		
-		JButton btnNewButton = new JButton("Diagramm neu zeichnen");
+		btnNewButton = new JButton(GuiStrings.getGuiString("b1",l));
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -223,7 +231,37 @@ public class PosiBasEuDi {
 		});
 		btnNewButton.setBounds(20, 77, 507, 20);
 		frmPositionsBasierteEulerdiagramme.getContentPane().add(btnNewButton);
+		
+		lblLang = new JLabel(GuiStrings.getGuiString("l1",l));
+		lblLang.setFont(new Font("Arial", Font.BOLD, 12));
+		lblLang.setBounds(350, 104, 100, 20);
+		lblLang.setHorizontalAlignment(2);
+		frmPositionsBasierteEulerdiagramme.getContentPane().add(lblLang);
+		
+		JComboBox<Language> comboBox_1 = new JComboBox<Language>();
+		comboBox_1.addActionListener(new ActionListener() {
 
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				changeLanguage(comboBox_1.getItemAt(comboBox_1.getSelectedIndex()));
+				
+			}			
+		});
+		comboBox_1.setModel(new DefaultComboBoxModel<Language>(Language.values()));
+		comboBox_1.setBounds(427, 105, 100, 20);
+		comboBox_1.setSelectedIndex(0);
+		frmPositionsBasierteEulerdiagramme.getContentPane().add(comboBox_1);
+
+	}
+	private void changeLanguage(Language l) {
+		frmPositionsBasierteEulerdiagramme.setTitle(GuiStrings.getGuiString("ti",l));
+		chckbxKreisAJN.setText(GuiStrings.getGuiString("c1",l));
+		chckbxKreisBJN.setText(GuiStrings.getGuiString("c2",l));
+		chckbxKreisCJN.setText(GuiStrings.getGuiString("c3",l));
+		chckbxSternJN.setText(GuiStrings.getGuiString("c4",l));
+		btnNewButton.setText(GuiStrings.getGuiString("b1",l));
+		lblLang.setText(GuiStrings.getGuiString("l1",l));
+		
 	}
 	
  
