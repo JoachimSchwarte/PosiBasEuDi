@@ -27,10 +27,10 @@ public class GuiStrings {
 					+ "enthalten."; break;
 			case "e7": r = "Doppelt auftretende Ziffern sollten in "
 					+ "der Regel vermieden werden."; break;
-			case "e8": r = "Eine öffnende Klammer muss "
-					+ "vor dem zugehörigen Buchstaben liegen."; break;
-			case "e9": r = "Eine schließende Klammer muss "
-					+ "hinter dem zugehörigen Buchstaben liegen."; break;
+			case "e8": r = "Eine Ã¶ffnende Klammer muss "
+					+ "vor dem zugehÃ¶rigen Buchstaben liegen."; break;
+			case "e9": r = "Eine schlieÃŸende Klammer muss "
+					+ "hinter dem zugehÃ¶rigen Buchstaben liegen."; break;
 			}
 		}
 		if (l == Language.English) {
@@ -53,7 +53,7 @@ public class GuiStrings {
 			case "e5": r = "Usage tips:"; break;
 			case "e6": r = "Each entry field must contain a "
 					+ "number."; break;
-			case "e7": r = "Dublicate occurrence of a number should "
+			case "e7": r = "Duplicate occurrence of a number should "
 					+ "be generally avoided."; break;
 			case "e8": r = "An opening bracket must "
 					+ "be placed previous to the "
