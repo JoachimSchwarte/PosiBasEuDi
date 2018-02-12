@@ -1,3 +1,7 @@
+/*	
+ * PosiBasEuDi
+ */
+
 package com.schwarte.eulerdiagramme;
 
 import java.awt.EventQueue;
@@ -23,6 +27,15 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Ellipse2D;
+
+/**
+ * Programm zur graphischen Darstellung von Zirkel-Diagrammen
+ * nach Euler auf Basis der Positionen der Diagrammelemente 
+ * entlang der Basisgeraden
+ * 
+ * @author Dr.-Ing. Joachim Schwarte
+ * @version 0.95
+ */
 
 public class PosiBasEuDi {
 	
@@ -63,6 +76,8 @@ public class PosiBasEuDi {
 	
 	/**
 	 * Launch the application.
+	 * @param args
+	 * Parameterliste
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -86,6 +101,8 @@ public class PosiBasEuDi {
 
 	/**
 	 * Initialize the contents of the frame.
+	 * @param l
+	 * initial GUI-Language
 	 */
 	private void initialize(Language l) {		
 		frmPositionsBasierteEulerdiagramme = new JFrame();
@@ -287,13 +304,13 @@ public class PosiBasEuDi {
 		lblNewLabel.setBounds(10, 8, 507, 14);
 		frmPositionsBasierteEulerdiagramme.getContentPane().add(lblNewLabel);
 		
-		JLabel lblNewLabelC = new JLabel("PosiBasEuDi Version 0.94");
+		JLabel lblNewLabelC = new JLabel("PosiBasEuDi Version 0.95");
 		lblNewLabelC.setFont(new Font("Arial", Font.PLAIN, 10));
 		lblNewLabelC.setBounds(20, 140, 516, 14);
 		lblNewLabelC.setHorizontalAlignment(2);
 		frmPositionsBasierteEulerdiagramme.getContentPane().add(lblNewLabelC);
 
-		JLabel lblNewLabelD = new JLabel("05.02.2018    Dr.-Ing. Joachim Schwarte");
+		JLabel lblNewLabelD = new JLabel("12.02.2018    Dr.-Ing. Joachim Schwarte");
 		lblNewLabelD.setFont(new Font("Arial", Font.PLAIN, 10));
 		lblNewLabelD.setBounds(10, 140, 516, 14);
 		lblNewLabelD.setHorizontalAlignment(4);
@@ -352,6 +369,13 @@ public class PosiBasEuDi {
 		frmPositionsBasierteEulerdiagramme.getContentPane().add(comboBox_1);
 
 	}
+	
+	/**
+	 * Wechsel der Sprache der Benutzerführung (GUI)
+	 * @param l1
+	 * die gewählte Sprache
+	 */
+	
 	private void changeLanguage(Language l1) {
 		frmPositionsBasierteEulerdiagramme.setTitle(GuiStrings.getGuiString("ti",l1));
 		chckbxKreisAJN.setText(GuiStrings.getGuiString("c1",l1));
@@ -362,6 +386,4 @@ public class PosiBasEuDi {
 		lblLang.setText(GuiStrings.getGuiString("l1",l1));
 		l=l1;
 	}
-	
- 
 }

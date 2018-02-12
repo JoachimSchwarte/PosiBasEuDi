@@ -11,6 +11,8 @@ public class SetMaxText extends PlainDocument {
 		super(); 
 		this.limit = limit; 
 		} 
+	
+	@Override
 	public void insertString 
 	(int offset, String  str, AttributeSet attr) 
 			throws BadLocationException { 
